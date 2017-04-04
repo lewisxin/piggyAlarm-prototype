@@ -20,13 +20,21 @@ export class TabsPage {
   tab5Root: any = SettingsPage;
 
   @ViewChild('myTabs') tabRef: Tabs;
-  
+
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
     public viewCtrl: ViewController) { }
 
   addAlarm() {
-    let modal = this.modalCtrl.create(AlarmSettingPage, {tabRef: this.tabRef});
+    let modal = this.modalCtrl.create(AlarmSettingPage, {
+      'createNewAlarm': true,
+      'alarm': {
+        'label': 'Alarm',
+        'music': '',
+        'on': true,
+        'time': '08:00'
+      }
+    });
     modal.present();
   }
 

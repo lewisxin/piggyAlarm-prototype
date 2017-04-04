@@ -20,9 +20,7 @@ import { Autofocus } from '../components/autofocus/autofocus';
 
 //providers
 import { ConfigData } from '../providers/config-data';
-import { AlarmData } from '../providers/alarm-data';
-import { CouponData } from '../providers/coupon-data';
-import { WeatherData } from '../providers/weather-data';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -45,7 +43,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     Autofocus
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,10 +65,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     SplashScreen,
     Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ConfigData,
-    AlarmData,
-    CouponData,
-    WeatherData
+    ConfigData
   ]
 })
 export class AppModule {}

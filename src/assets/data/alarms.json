@@ -1,0 +1,14 @@
+[
+    {
+        "time": "08:20",
+        "music": "", // selection from list
+        "label": "Alarm", // default 'Alarm'
+        "on": true
+    },
+    {
+        "time": "09:50",
+        "music": "", // selection from list
+        "label": "Alarm", // default 'Alarm'
+        "on": true
+    }
+]

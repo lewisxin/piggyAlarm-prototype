@@ -52,5 +52,5 @@
       <ion-note item-right>{{alarm.label}}</ion-note>
     </button>
   </ion-list>
-  <button *ngIf="!createNew" ion-button color="danger" full>Delete</button>
+  <button *ngIf="!createNew" ion-button color="danger" full (click)="deleteAlarm(alarm)">Delete</button>
 </ion-content>

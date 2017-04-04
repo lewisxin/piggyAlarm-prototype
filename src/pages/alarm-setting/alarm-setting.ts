@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, App, Tabs, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, App, ModalController } from 'ionic-angular';
 import { AlarmSettingLabelPage } from "../alarm-setting-label/alarm-setting-label";
 import { AlarmSettingMusicPage } from "../alarm-setting-music/alarm-setting-music";
+import { TabsPage } from "../tabs/tabs";
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the AlarmSetting page.
@@ -14,28 +16,24 @@ import { AlarmSettingMusicPage } from "../alarm-setting-music/alarm-setting-musi
   templateUrl: 'alarm-setting.html'
 })
 export class AlarmSettingPage {
-  tabRef: Tabs;
-  alarm = {
-    'time': '08:00',
-    'music': '', // selection from list
-    'label': 'Alarm', // default 'Alarm'
-    "on": true
-  };
+  alarm: any;
   createNew = true;
   timeFormat = 'hh:mm A' // 'HH:mm'
+  alarmList: any
 
   constructor(public navCtrl: NavController,
-  public modalCtrl: ModalController,
+    public modalCtrl: ModalController,
     public navParams: NavParams,
     public appCtrl: App,
-    public viewCtrl: ViewController) { }
+    public viewCtrl: ViewController,
+    private storage: Storage) { }
 
   ionViewWillLoad() {
     console.log('ionViewWillLoad AlarmSettingPage');
     if (this.navParams.data && this.navParams.data.createNewAlarm == false) {
       this.createNew = false;
     }
-    if (this.navParams.data && this.navParams.data.alarm){
+    if (this.navParams.data && this.navParams.data.alarm) {
       this.alarm = this.navParams.data.alarm;
     }
     console.log(this.createNew)
@@ -43,7 +41,11 @@ export class AlarmSettingPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AlarmSettingPage');
-    this.tabRef = this.navParams.data.tabRef;
+    this.storage.ready().then(() => {
+      this.storage.get('alarmList').then((alarmList) => {
+        this.alarmList = alarmList;
+      })
+    })
   }
 
   // cancel alarm settings
@@ -53,21 +55,55 @@ export class AlarmSettingPage {
 
   // save alarm settings
   save() {
+    this.storage.ready().then(() => {
+      this.storage.get('alarmList').then((alarmList) => {
+        // console.log(alarmList);
+        if (alarmList) {
+          if (this.createNew) {
+            alarmList.push(this.alarm);
+            alarmList.sort((a, b) => {
+              if (a.time < b.time) {
+                return -1;
+              } else if (a.time > b.time) {
+                return 1;
+              } else {
+                return 0;
+              }
+            })
+          } else {
+            alarmList[this.alarm.index] = this.alarm;
+          }
+          this.storage.set('alarmList', alarmList);
+        } else {
+          this.storage.set('alarmList', []);
+        }
+        this.alarmList = alarmList;
+      })
+    })
     this.viewCtrl.dismiss();
-    this.tabRef.select(0);
+    this.navCtrl.setRoot(TabsPage);
   }
-  
+
   // handle time value change event
   onTimeSelection() {
     console.log(this.alarm);
     // remind user how long can he/she sleep
   }
 
-  openAlarmLabelSettingPage(){
-     this.modalCtrl.create(AlarmSettingLabelPage, { alarm: this.alarm }).present();
+  deleteAlarm(alarm) {
+    this.storage.ready().then(() => {
+      this.alarmList.splice(alarm.index, 1);
+      this.storage.set("alarmList", this.alarmList);
+      this.viewCtrl.dismiss();
+      this.navCtrl.setRoot(TabsPage);
+    })
   }
-  openAlarmMusicSettingPage(){
-     this.modalCtrl.create(AlarmSettingMusicPage, { alarm: this.alarm }).present(); 
+
+  openAlarmLabelSettingPage() {
+    this.modalCtrl.create(AlarmSettingLabelPage, { alarm: this.alarm }).present();
+  }
+  openAlarmMusicSettingPage() {
+    this.modalCtrl.create(AlarmSettingMusicPage, { alarm: this.alarm }).present();
   }
 
 }
