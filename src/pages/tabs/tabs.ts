@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { HomePage } from '../home/home';
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { AlarmPage } from '../alarm/alarm';
+import { CouponPage } from '../coupon/coupon';
+import { AlarmSettingPage } from '../alarm-setting/alarm-setting';
+import { WeatherPage } from '../weather/weather';
+import { SettingsPage } from '../settings/settings';
+import { ModalController, ViewController, NavController, Tabs } from "ionic-angular";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -10,11 +13,24 @@ import { ContactPage } from '../contact/contact';
 export class TabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  tab1Root: any = HomePage;
-  tab2Root: any = AboutPage;
-  tab3Root: any = ContactPage;
+  tab1Root: any = AlarmPage;
+  tab2Root: any = CouponPage;
+  tab3Root: any = AlarmSettingPage;
+  tab4Root: any = WeatherPage;
+  tab5Root: any = SettingsPage;
 
-  constructor() {
+  @ViewChild('myTabs') tabRef: Tabs;
+  
+  constructor(public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public viewCtrl: ViewController) { }
 
+  addAlarm() {
+    let modal = this.modalCtrl.create(AlarmSettingPage, this.tabRef);
+    modal.present();
+  }
+
+  goToTab(index: number) {
+    this.navCtrl.parent.select(index);
   }
 }

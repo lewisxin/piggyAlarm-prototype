@@ -1,0 +1,49 @@
+<!--
+  Generated template for the Coupon page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Coupon</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list *ngFor="let coupon of couponList" no-lines>
+    <!--<ion-item>-->
+      <ion-card>
+        <img src="assets/img/{{coupon.img}}" />
+
+        <ion-card-content>
+          <ion-card-title>
+            {{coupon.title}}
+          </ion-card-title>
+          <p>
+            {{coupon.description}}
+          </p>
+        </ion-card-content>
+
+        <ion-row no-padding>
+          <ion-col text-left>
+            <button ion-button clear small color="danger" icon-left>
+              <ion-icon name='share-alt'></ion-icon>
+              Share
+            </button>
+          </ion-col>
+          <ion-col text-right>
+            <button ion-button clear small color="danger" icon-left (click)="redeemCoupon(coupon)">
+              <ion-icon name='barcode'></ion-icon>
+              Redeem
+            </button>
+          </ion-col>
+        </ion-row>
+
+      </ion-card>
+    <!--</ion-item>-->
+  </ion-list>
+</ion-content>
