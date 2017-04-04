@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, App, Tabs, ModalController } from 'ionic-angular';
 import { AlarmSettingLabelPage } from "../alarm-setting-label/alarm-setting-label";
+import { AlarmSettingMusicPage } from "../alarm-setting-music/alarm-setting-music";
 
 /*
   Generated class for the AlarmSetting page.
@@ -64,6 +65,9 @@ export class AlarmSettingPage {
 
   openAlarmLabelSettingPage(){
      this.modalCtrl.create(AlarmSettingLabelPage, { alarm: this.alarm }).present();
+  }
+  openAlarmMusicSettingPage(){
+     this.modalCtrl.create(AlarmSettingMusicPage, { alarm: this.alarm }).present(); 
   }
 
 }

@@ -18,6 +18,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 //directives
 import { Autofocus } from '../components/autofocus/autofocus';
 
+//providers
+import { ConfigData } from '../providers/config-data';
+import { AlarmData } from '../providers/alarm-data';
+import { CouponData } from '../providers/coupon-data';
+import { WeatherData } from '../providers/weather-data';
+
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
@@ -58,7 +65,11 @@ import { Keyboard } from '@ionic-native/keyboard';
     StatusBar,
     SplashScreen,
     Keyboard,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ConfigData,
+    AlarmData,
+    CouponData,
+    WeatherData
   ]
 })
 export class AppModule {}

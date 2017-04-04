@@ -41,7 +41,7 @@
       <ion-datetime [displayFormat]="timeFormat" [pickerFormat]="timeFormat" [(ngModel)]="alarm.time" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"
         (ionChange)="onTimeSelection($event)"></ion-datetime>
     </ion-item>
-    <button ion-item>
+    <button ion-item (click)="openAlarmMusicSettingPage()">
       <ion-icon name="musical-notes" item-left></ion-icon>      
       <ion-label>Music</ion-label>
       <ion-note item-right>{{alarm.music}}</ion-note>
