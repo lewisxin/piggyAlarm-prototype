@@ -26,7 +26,7 @@ export class TabsPage {
     public viewCtrl: ViewController) { }
 
   addAlarm() {
-    let modal = this.modalCtrl.create(AlarmSettingPage, this.tabRef);
+    let modal = this.modalCtrl.create(AlarmSettingPage, {tabRef: this.tabRef});
     modal.present();
   }
 

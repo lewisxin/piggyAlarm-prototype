@@ -27,6 +27,30 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <!--<ion-list>
+    <button ion-item (click)="openNavDetailsPage(item)" icon-left>
+      <ion-icon [name]="'logo-' + item.icon" [ngStyle]="{'color': item.color}" item-left></ion-icon>
+      {{ item.title }}
+    </button>
+  </ion-list>-->
+  <ion-list>
+    <ion-item>
+      <ion-icon name="clock" item-left></ion-icon>
+      <ion-label>Time</ion-label>
+      <ion-datetime [displayFormat]="timeFormat" [pickerFormat]="timeFormat" [(ngModel)]="alarm.time" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"
+        (ionChange)="onTimeSelection($event)"></ion-datetime>
+    </ion-item>
+    <button ion-item>
+      <ion-icon name="musical-notes" item-left></ion-icon>      
+      <ion-label>Music</ion-label>
+      <ion-note item-right>{{alarm.music}}</ion-note>
+    </button>
+    <button ion-item (click)="openAlarmLabelSettingPage()">
+      <ion-icon name="information-circle" item-left></ion-icon>      
+      <ion-label>Label</ion-label>
+      <ion-note item-right>{{alarm.label}}</ion-note>
+    </button>
+  </ion-list>
+  <button *ngIf="!createNew" ion-button color="danger" full>Delete</button>
 </ion-content>
