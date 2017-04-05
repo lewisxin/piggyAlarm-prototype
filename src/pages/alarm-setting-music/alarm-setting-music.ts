@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { ConfigData } from "../../providers/config-data";
+import { Storage } from '@ionic/storage';
+
 import * as _ from 'lodash';
 
 
@@ -18,17 +20,22 @@ export class AlarmSettingMusicPage {
   songListByCategory = [];
   alarm: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private config: ConfigData, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private config: ConfigData, public viewCtrl: ViewController, private storage: Storage) {
     this.alarm = this.navParams.data.alarm;
   }
 
-  ionViewWillLoad() {
-    this.config.getConfig().subscribe(data => {
-      let listByCategory = _.groupBy(data, "category");
-      for (let key in listByCategory) {
-        this.songListByCategory.push({ 'key': key, 'value': listByCategory[key] });
-      }
-    });
+  ionViewWillEnter() {
+    // this.config.getConfig().subscribe(data => {
+    this.storage.ready().then(() => {
+      this.storage.get('songList').then(data => {
+        console.log(data);
+        let listByCategory = _.groupBy(data, "category");
+        for (let key in listByCategory) {
+          this.songListByCategory.push({ 'key': key, 'value': listByCategory[key] });
+        }
+      })
+    })
+    // });
   }
 
   ionViewDidLoad() {

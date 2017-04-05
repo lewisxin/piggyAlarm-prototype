@@ -19,10 +19,10 @@
       <ion-item-sliding>
         <ion-item>
           <ion-avatar item-right>
-            <ion-toggle [checked]="alarm.on"></ion-toggle>
-          </ion-avatar> 
-          <ion-label class="title">{{ alarm.time }}</ion-label>
-          <ion-label class="description">{{ alarm.label }}</ion-label> 
+            <ion-toggle [checked]="alarm.on" (ionChange)="toggleAlarm(alarm, i)"></ion-toggle>
+          </ion-avatar>
+          <ion-label class="alarmTimeLabel">{{ alarm.time }}</ion-label>
+          <ion-label class="descriptionLabel">{{ alarm.label }}</ion-label>
         </ion-item>
         <!-- Functions for sliding right -->
         <ion-item-options side="right">

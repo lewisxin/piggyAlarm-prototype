@@ -25,11 +25,9 @@ export class AlarmPage {
 
     this.storage.ready().then(() => {
       this.storage.get('alarmList').then((val) => {
-        console.log(val);
         this.alarmList = val;
       })
       this.storage.get('timeFormat').then((val) => {
-        console.log(val);
         this.timeFormat = val ? val : 'HH:mm';
       })
     })
@@ -41,6 +39,16 @@ export class AlarmPage {
   deleteAlarm(i) {
     this.storage.ready().then(() => {
       this.alarmList.splice(i, 1);
+      this.storage.set("alarmList", this.alarmList);
+    })
+  }
+
+  toggleAlarm(alarm, i){
+    console.log('toggleAlarm');
+    var on = false;
+    if(!alarm.on) on = true;
+    this.storage.ready().then(() => {
+      this.alarmList[i].on = on;
       this.storage.set("alarmList", this.alarmList);
     })
   }

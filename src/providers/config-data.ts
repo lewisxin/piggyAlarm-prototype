@@ -16,9 +16,11 @@ export class ConfigData {
   }
 
   getConfig() {
-    console.log('here')
     var url = "../assets/data/config.json";
-    return this.http.get(url).map(res => res.json().songList)
+    return this.http.get(url).map(res => { 
+      console.log(res.json().songList);
+      return res.json().songList
+    })
   }
 
 }
