@@ -16,7 +16,7 @@ export class ConfigData {
   }
 
   getConfig() {
-    var url = "../assets/data/config.json";
+    var url = "assets/data/config.json";
     return this.http.get(url).map(res => { 
       console.log(res.json().songList);
       return res.json().songList

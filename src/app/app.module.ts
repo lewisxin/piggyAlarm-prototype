@@ -28,6 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { MediaPlugin } from '@ionic-native/media';
 import { Vibration } from '@ionic-native/vibration';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { Vibration } from '@ionic-native/vibration';
     Keyboard,
     MediaPlugin,
     Vibration,
+    LocalNotifications,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConfigData
   ]

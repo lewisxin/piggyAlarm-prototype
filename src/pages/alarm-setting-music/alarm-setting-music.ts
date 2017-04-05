@@ -26,17 +26,17 @@ export class AlarmSettingMusicPage {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter AlarmSettingMusicPage');
-    
-    // this.config.getConfig().subscribe(data => {
-    this.storage.ready().then(() => {
-      this.storage.get('songList').then(data => {
-        // console.log(data);
-        let listByCategory = _.groupBy(data, "category");
-        for (let key in listByCategory) {
-          this.songListByCategory.push({ 'key': key, 'value': listByCategory[key] });
-        }
-      })
-    })
+
+    this.config.getConfig().subscribe(data => {
+      // this.storage.ready().then(() => {
+      // this.storage.get('songList').then(data => {
+      // console.log(data);
+      let listByCategory = _.groupBy(data, "category");
+      for (let key in listByCategory) {
+        this.songListByCategory.push({ 'key': key, 'value': listByCategory[key] });
+      }
+    });
+    // })
     // });
   }
 

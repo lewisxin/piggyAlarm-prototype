@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 /*
   Generated class for the AlarmRing page.
@@ -13,10 +13,14 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class AlarmRingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AlarmRingPage');
+  }
+
+  stopAlarm() {
+    this.viewCtrl.dismiss({ stopAlarm: true })
   }
 
 }

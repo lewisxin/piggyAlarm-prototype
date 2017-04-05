@@ -29,6 +29,7 @@
           <button ion-button color="danger" (click)="deleteAlarm(i)">
             <ion-icon name="trash"></ion-icon>Delete
           </button>
+          <button ion-button (click)="ringAlarm(alarm)">Ring</button>
         </ion-item-options>
         <!-- Functions for sliding left -->
         <ion-item-options side="left">
@@ -39,5 +40,5 @@
       </ion-item-sliding>
     </template>
   </ion-list>
-
+  
 </ion-content>

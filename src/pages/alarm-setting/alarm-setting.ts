@@ -4,8 +4,6 @@ import { AlarmSettingLabelPage } from "../alarm-setting-label/alarm-setting-labe
 import { AlarmSettingMusicPage } from "../alarm-setting-music/alarm-setting-music";
 import { TabsPage } from "../tabs/tabs";
 import { Storage } from '@ionic/storage';
-import { MediaPlugin, MediaObject } from '@ionic-native/media';
-import { Vibration } from '@ionic-native/vibration';
 
 /*
   Generated class for the AlarmSetting page.
@@ -29,8 +27,7 @@ export class AlarmSettingPage {
     public appCtrl: App,
     public viewCtrl: ViewController,
     private storage: Storage,
-    private media: MediaPlugin,
-    private vibration: Vibration
+    // private localNotifications: LocalNotifications
   ) { }
 
   ionViewWillLoad() {
@@ -63,7 +60,6 @@ export class AlarmSettingPage {
       this.storage.get('alarmList').then((alarmList) => {
         // console.log(alarmList);
         if (alarmList) {
-          this.alarm.on = true;
           if (this.createNew) {
             alarmList.push(this.alarm);
           } else {
@@ -82,7 +78,6 @@ export class AlarmSettingPage {
         } else {
           this.storage.set('alarmList', []);
         }
-        this.ringAlarm();
         this.alarmList = alarmList;
       })
     })
@@ -112,25 +107,28 @@ export class AlarmSettingPage {
     this.modalCtrl.create(AlarmSettingMusicPage, { alarm: this.alarm }).present();
   }
 
-  private interval;
-  // control status change of the music play event
-  onStatusUpdate = (status) => {
-    console.log("Media Status = " + status, "Interval = " + this.interval);
-    if (status == 2) {
-      this.interval = setInterval(() => {
-          this.vibration.vibrate(1000);
-      }, 500);
-    }
-    if (status == 4) {
-      clearInterval(this.interval);
-    }
-  };
+  // let notification = {
+  //   id: 1,
+  //   title: 'Hey!',
+  //   text: 'You just got notified :)',
+  //   at: new Date(),
+  // };
 
-  ringAlarm() {
-    this.media.create('assets/music/file.wav', this.onStatusUpdate)
-      .then((file: MediaObject) => {
-        file.play();
-        file.setVolume(+this.alarm.volume / 100.0);
-      });
-  }
+  // this.localNotifications.cancelAll().then(() => {
+  //   this.localNotifications.schedule(notification);
+  //   this.localNotifications.getAll().then(n => {
+  //     console.log(n);
+  //     console.log(n[0]);
+  //   })
+  //   console.log('notification')
+  //   this.localNotifications.isTriggered(1).then(val => {
+  //     console.log(val);
+  //   });
+  //   this.localNotifications.isPresent(1).then(val => {
+  //     console.log(val);
+  //   });
+  //   this.localNotifications.on('trigger',()=>{
+  //     console.log('Notification triggered')
+  //   })
+  // })
 }
