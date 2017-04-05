@@ -8,7 +8,7 @@
 
   <ion-toolbar>
     <ion-title>Set Music</ion-title>
-    <ion-buttons start>
+    <ion-buttons end>
       <button ion-button (click)="back()">
         <span ion-text color="primary" showWhen="ios">Done</span>
         <ion-icon name="md-close" showWhen="android,windows"></ion-icon>        
@@ -19,13 +19,22 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-list-header>Volume</ion-list-header>
+    <ion-item>
+      <ion-range min="0" max="100" step="1" [(ngModel)]="alarm.volume">
+        <ion-icon range-left large name="volume-down"></ion-icon>
+        <ion-icon range-right large name="volume-up"></ion-icon>
+      </ion-range>
+    </ion-item>
+  </ion-list>
   <ion-list radio-group [(ngModel)]="alarm.music">
+    <ion-list-header>Sounds</ion-list-header>
     <template ngFor let-sublist [ngForOf]="songListByCategory">
-      <ion-list-header>{{ sublist.key }}</ion-list-header>
+      <ion-item-divider color="light" class="listDivider">{{ sublist.key }}</ion-item-divider>
       <ion-item *ngFor="let item of sublist.value">
         <ion-label>{{ item.label }}</ion-label>
-        <ion-radio (click)="back()" [value]="item.label" [checked]="item.selected"></ion-radio>
+        <ion-radio [value]="item.label" [checked]="item.selected"></ion-radio>
       </ion-item>
     </template>
   </ion-list>

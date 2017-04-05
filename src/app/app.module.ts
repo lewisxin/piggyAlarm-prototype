@@ -15,17 +15,19 @@ import { CouponRedeemPage } from '../pages/coupon-redeem/coupon-redeem';
 // util pages
 import { TabsPage } from '../pages/tabs/tabs';
 
-//directives
+// directives
 import { Autofocus } from '../components/autofocus/autofocus';
 
-//providers
+// providers
 import { ConfigData } from '../providers/config-data';
 import { IonicStorageModule } from '@ionic/storage';
 
-
+// native components
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
+import { MediaPlugin } from '@ionic-native/media';
+import { Vibration } from '@ionic-native/vibration';
 
 @NgModule({
   declarations: [
@@ -64,8 +66,10 @@ import { Keyboard } from '@ionic-native/keyboard';
     StatusBar,
     SplashScreen,
     Keyboard,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MediaPlugin,
+    Vibration,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConfigData
   ]
 })
-export class AppModule {}
+export class AppModule { }

@@ -22,7 +22,7 @@ export class MyApp {
       splashScreen.hide();
       storage.ready().then(() => {
         storage.set('songList', this.songList);
-      })
+      });
     });
   }
 

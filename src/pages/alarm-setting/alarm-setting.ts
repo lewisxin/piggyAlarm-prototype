@@ -4,6 +4,8 @@ import { AlarmSettingLabelPage } from "../alarm-setting-label/alarm-setting-labe
 import { AlarmSettingMusicPage } from "../alarm-setting-music/alarm-setting-music";
 import { TabsPage } from "../tabs/tabs";
 import { Storage } from '@ionic/storage';
+import { MediaPlugin, MediaObject } from '@ionic-native/media';
+import { Vibration } from '@ionic-native/vibration';
 
 /*
   Generated class for the AlarmSetting page.
@@ -19,14 +21,17 @@ export class AlarmSettingPage {
   alarm: any;
   createNew = true;
   timeFormat = 'hh:mm A' // 'HH:mm'
-  alarmList: any
+  alarmList: any;
 
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
     public navParams: NavParams,
     public appCtrl: App,
     public viewCtrl: ViewController,
-    private storage: Storage) { }
+    private storage: Storage,
+    private media: MediaPlugin,
+    private vibration: Vibration
+  ) { }
 
   ionViewWillLoad() {
     console.log('ionViewWillLoad AlarmSettingPage');
@@ -36,7 +41,6 @@ export class AlarmSettingPage {
     if (this.navParams.data && this.navParams.data.alarm) {
       this.alarm = this.navParams.data.alarm;
     }
-    console.log(this.createNew)
   }
 
   ionViewDidLoad() {
@@ -45,7 +49,7 @@ export class AlarmSettingPage {
       this.storage.get('alarmList').then((alarmList) => {
         this.alarmList = alarmList;
       })
-    })
+    });
   }
 
   // cancel alarm settings
@@ -59,24 +63,26 @@ export class AlarmSettingPage {
       this.storage.get('alarmList').then((alarmList) => {
         // console.log(alarmList);
         if (alarmList) {
+          this.alarm.on = true;
           if (this.createNew) {
             alarmList.push(this.alarm);
-            alarmList.sort((a, b) => {
-              if (a.time < b.time) {
-                return -1;
-              } else if (a.time > b.time) {
-                return 1;
-              } else {
-                return 0;
-              }
-            })
           } else {
             alarmList[this.alarm.index] = this.alarm;
           }
+          alarmList.sort((a, b) => {
+            if (a.time < b.time) {
+              return -1;
+            } else if (a.time > b.time) {
+              return 1;
+            } else {
+              return 0;
+            }
+          })
           this.storage.set('alarmList', alarmList);
         } else {
           this.storage.set('alarmList', []);
         }
+        this.ringAlarm();
         this.alarmList = alarmList;
       })
     })
@@ -106,4 +112,25 @@ export class AlarmSettingPage {
     this.modalCtrl.create(AlarmSettingMusicPage, { alarm: this.alarm }).present();
   }
 
+  private interval;
+  // control status change of the music play event
+  onStatusUpdate = (status) => {
+    console.log("Media Status = " + status, "Interval = " + this.interval);
+    if (status == 2) {
+      this.interval = setInterval(() => {
+          this.vibration.vibrate(1000);
+      }, 500);
+    }
+    if (status == 4) {
+      clearInterval(this.interval);
+    }
+  };
+
+  ringAlarm() {
+    this.media.create('assets/music/file.wav', this.onStatusUpdate)
+      .then((file: MediaObject) => {
+        file.play();
+        file.setVolume(+this.alarm.volume / 100.0);
+      });
+  }
 }

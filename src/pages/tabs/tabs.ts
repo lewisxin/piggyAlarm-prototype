@@ -32,7 +32,8 @@ export class TabsPage {
         'label': 'Alarm',
         'music': '',
         'on': true,
-        'time': '08:00'
+        'time': '08:00',
+        'volume': '80'
       }
     });
     modal.present();
