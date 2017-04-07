@@ -91,7 +91,7 @@ export class AlarmRingPage {
     img: 'breakfast-salad.jpeg',
     title: 'Mini Salad',
     location: 'Platypus Foodbar',
-    description: 'Feeling hugry? Come and visit Platypus Foodbar at NUS Science Canteen. You can enjoy a S$4 worth of mini salad bowl!',
+    description: 'Feeling hugry? Come and visit Platypus Foodbar at NUS Science Canteen. You can enjoy a S$4 worth of mini salad bowl for free!',
     address: {
       name: '12 Science Drive 2, Singapore 117549',
       lat: 0,
