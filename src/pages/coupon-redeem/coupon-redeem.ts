@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage'
 
 /*
   Generated class for the CouponRedeem page.
@@ -13,12 +14,29 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class CouponRedeemPage {
   coupon: any;
+  user: any = {
+    name: 'Lewis',
+    timeFormat: 'hh:mm A',
+    gender: 'm'
+  };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-  
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CouponRedeemPage');
-    this.coupon = this.navParams.data;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private storage: Storage,
+  ) {
+    this.storage.ready().then(() => {
+      this.storage.get('user').then((user) => {
+        if (user) {
+          this.user = user;
+        }
+      });
+    })
+  }
+
+  ionViewWillLoad() {
+    console.log('ionViewWillLoad CouponRedeemPage');
+    this.coupon = this.navParams.data.coupon;
   }
 
 }

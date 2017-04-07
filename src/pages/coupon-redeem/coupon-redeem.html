@@ -14,5 +14,28 @@
 
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row> 
+      <ion-col class="center-horizontal" col-7>
+        <img src="assets/img/qr-sample.png" />
+      </ion-col>
+      <ion-col col-12>
+        <h4 class="text-center">{{ user.name }}</h4>
+      </ion-col>
+      <ion-col col-12>
+        <h4 class="text-center" style="font-weight:400">{{ coupon.title }} @ {{ coupon.location }}</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p style="margin-top:0; margin-bottom: 10px; color:dimgray">Please show this QR code at store counter. The staff will help you scan and redeem the coupon. (Expires at {{coupon.expire |date:'dd/MM/yyyy HH:ss'}})</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <iframe [src]="coupon.address.url | safeUrl" style="min-height: 18rem" frameborder="0" class="map" allowfullscreen></iframe>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

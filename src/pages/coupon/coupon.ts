@@ -35,7 +35,7 @@ export class CouponPage {
   }
 
   redeemCoupon(coupon) {
-    this.navCtrl.push(CouponRedeemPage, coupon);
+    this.navCtrl.push(CouponRedeemPage, { coupon: coupon });
   }
 
   deleteCoupon(coupon, index) {
