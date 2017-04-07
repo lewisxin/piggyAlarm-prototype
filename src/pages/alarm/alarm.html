@@ -21,7 +21,7 @@
           <ion-avatar item-right>
             <ion-toggle [checked]="alarm.on" (ionChange)="toggleAlarm(alarm, i)"></ion-toggle>
           </ion-avatar>
-          <ion-label class="alarmTimeLabel">{{ alarm.time }}</ion-label>
+          <ion-label class="alarmTimeLabel">{{ alarm.time | timeFromatter:user.timeFormat}}</ion-label>
           <ion-label class="descriptionLabel">{{ alarm.label }}</ion-label>
         </ion-item>
         <!-- Functions for sliding right -->

@@ -25,15 +25,15 @@
           <ion-card-title>
             {{coupon.title}}
           </ion-card-title>
-          <h4>
-            {{coupon.description}}
-          </h4>
           <h2 style="font-size:1.2rem; font-weight:200">@ {{ coupon.location }}</h2>
           <h2 style="font-size:1.2rem; font-weight:200">
             <ion-icon style="font-size:inherit" name="ios-time-outline" showWhen="ios"></ion-icon>
             <ion-icon style="font-size:inherit" name="md-time" showWhen="android, windows"></ion-icon>
             Expires at {{coupon.expire | date:'dd/MM/yyyy HH:ss'}}
           </h2>
+          <h4 style="margin-top:10px">
+            {{coupon.description}}
+          </h4>
         </ion-card-content>
 
         <ion-row no-padding>

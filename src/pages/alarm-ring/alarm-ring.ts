@@ -91,7 +91,7 @@ export class AlarmRingPage {
     img: 'breakfast-salad.jpeg',
     title: 'Mini Salad',
     location: 'Platypus Foodbar',
-    description: '',
+    description: 'Feeling hugry? Come and visit Platypus Foodbar at NUS Science Canteen. You can enjoy a S$4 worth of mini salad bowl!',
     address: {
       name: '12 Science Drive 2, Singapore 117549',
       lat: 0,
@@ -104,7 +104,7 @@ export class AlarmRingPage {
     img: 'subway-3-dollar-voucher.png',
     title: '$3 Voucher',
     location: 'Subway YIH',
-    description: '',
+    description: 'S$3 off for your customized subway sandwich. Come and visit our store at Yusof Ishak House today!',
     address: {
       name: '31 Lower Kent Ridge Road, #01-06 Yusof Ishak House National University, Yusof Ishak House, Singapore 119078',
       lat: 0,
@@ -116,7 +116,7 @@ export class AlarmRingPage {
     img: 'koufu-breakfast.png',
     title: 'Classic Set',
     location: 'Koufu Utown',
-    description: '',
+    description: 'Want to have a local full breakfast set? Visit Koufu and you can have a classic set with 2 soft-boiled eggs, 1 kaya toast and 1 coffee or tea of your choice!',
     address: {
       name: '1 CREATE way, 1 Create Way, CREATE Campus, Singapore 138602',
       lat: 0,
