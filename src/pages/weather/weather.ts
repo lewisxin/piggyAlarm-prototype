@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
+
 
 /*
   Generated class for the Weather page.
@@ -13,10 +14,19 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class WeatherPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private loadingCtrl: LoadingController
+  ) { }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WeatherPage');
+    // let loading = this.loadingCtrl.create({
+    //   content: 'We are loading weather data for you :)<br>Please Wait..'
+    // });
+    // loading.present();
   }
 
 }

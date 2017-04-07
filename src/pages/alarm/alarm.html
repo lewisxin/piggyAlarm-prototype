@@ -40,5 +40,12 @@
       </ion-item-sliding>
     </template>
   </ion-list>
-  
+  <ion-grid *ngIf="!alarmList || alarmList.length == 0">
+    <ion-row style="transform:translate(0,170%)"> 
+      <ion-col> 
+        <h5 class="empty-state-label">No Alarm</h5>
+        <h5 class="empty-state-label">You can click the <ion-icon style="font-size:inherit" name="add-circle"></ion-icon> button to add one</h5>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

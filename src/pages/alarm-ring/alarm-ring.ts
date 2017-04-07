@@ -116,7 +116,7 @@ export class AlarmRingPage {
     img: 'koufu-breakfast.png',
     title: 'Classic Set',
     location: 'Koufu Utown',
-    description: 'Want to have a local full breakfast set? Visit Koufu and you can have a classic set with 2 soft-boiled eggs, 1 kaya toast and 1 coffee or tea of your choice!',
+    description: 'Wish to have a local favourite breakfast set? Visit Koufu and you can have our classic set for free. Set includes 2 soft-boiled eggs, 1 kaya toast and 1 coffee or tea of your choice!',
     address: {
       name: '1 CREATE way, 1 Create Way, CREATE Campus, Singapore 138602',
       lat: 0,

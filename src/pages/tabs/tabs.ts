@@ -40,7 +40,7 @@ export class TabsPage {
       'createNewAlarm': true,
       'alarm': {
         'label': 'Alarm',
-        'music': '',
+        'music': 'Piggy Song',
         'on': true,
         'time': '08:00',
         'volume': '80'

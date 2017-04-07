@@ -15,7 +15,6 @@
 
 <ion-content padding>
   <ion-list no-lines>
-    <!--<ion-item>-->
     <template ngFor let-coupon let-i="index" [ngForOf]="couponList">
 
       <ion-card>
@@ -58,6 +57,16 @@
         </ion-row>
       </ion-card>
     </template>
-    <!--</ion-item>-->
   </ion-list>
+  <ion-grid *ngIf="!couponList || couponList.length == 0">
+    <ion-row style="transform:translate(0,50%)"> 
+      <ion-col col-3 class="center-horizontal">
+        <img src="assets/img/giftbox-empty.png" />
+      </ion-col>
+      <ion-col col-12> 
+        <h5 class="empty-state-label">Opps! Your giftbox is empty</h5>
+        <h5 class="empty-state-label">Get up early next time to unlock your breakfast coupons!</h5>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

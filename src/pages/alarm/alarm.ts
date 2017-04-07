@@ -57,6 +57,7 @@ export class AlarmPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AlarmPage');
+    console.log(this.alarmList);
   }
 
   deleteAlarm(i) {
