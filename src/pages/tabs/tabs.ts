@@ -5,7 +5,7 @@ import { CouponPage } from '../coupon/coupon';
 import { AlarmSettingPage } from '../alarm-setting/alarm-setting';
 import { WeatherPage } from '../weather/weather';
 import { SettingsPage } from '../settings/settings';
-import { ModalController, ViewController, NavController, Tabs } from "ionic-angular";
+import { ModalController, ViewController, NavController, Tabs, NavParams } from "ionic-angular";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -23,7 +23,17 @@ export class TabsPage {
 
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
-    public viewCtrl: ViewController) { }
+    public navParams: NavParams,
+    public viewCtrl: ViewController
+  ) { }
+
+  ionViewDidEnter() {
+    console.log('ionViewWillEnter TabsPage');
+    var tab = this.navParams.data.tab;
+    if (tab) {
+      this.goToTab(tab);
+    }
+  }
 
   addAlarm() {
     let modal = this.modalCtrl.create(AlarmSettingPage, {
@@ -40,6 +50,6 @@ export class TabsPage {
   }
 
   goToTab(index: number) {
-    this.navCtrl.parent.select(index);
+    this.tabRef.select(index);
   }
 }

@@ -90,19 +90,26 @@ export class AlarmPage {
 
   ringAlarm(alarm) {
     this.alarmStop = false;
-    this.media.create('assets/music/file.wav', this.onStatusUpdate)
-      .then((file: MediaObject) => {
-        this.alarmMusic = file;
-        this.alarmMusic.play();
-        this.alarmMusic.setVolume(+alarm.volume / 100.0);
-        let alarmRingModal = this.modalCtrl.create(AlarmRingPage);
-        alarmRingModal.onDidDismiss(data => {
-          console.log(data);
-          this.alarmStop = true;
-          this.alarmMusic.stop();
-        })
-        alarmRingModal.present();
-      });
+    // this.media.create('assets/music/file.wav', this.onStatusUpdate)
+    //   .then((file: MediaObject) => {
+    //     this.alarmMusic = file;
+    //     this.alarmMusic.play();
+    //     this.alarmMusic.setVolume(+alarm.volume / 100.0);
+    let alarmRingModal = this.modalCtrl.create(AlarmRingPage, { alarm: alarm });
+    // alarmRingModal.onDidDismiss(data => {
+    //   console.log(data);
+    //   this.stopAlarm();
+    // })
+    alarmRingModal.present();
+    //   setTimeout(() => {
+    //     // TODO: STOP ALARM, DISPLAY PAGE SHOWS THAT YOU MISSED THE GIFT
+    //   }, 3 * 60 * 1000); // alarm auto stop in 3 min
+    // });
+  }
+
+  stopAlarm() {
+    this.alarmStop = true;
+    this.alarmMusic.stop();
   }
 
 }

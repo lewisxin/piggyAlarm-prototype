@@ -12,6 +12,9 @@ import { AlarmRingPage } from '../pages/alarm-ring/alarm-ring';
 import { AlarmSettingMusicPage } from '../pages/alarm-setting-music/alarm-setting-music';
 import { AlarmSettingLabelPage } from '../pages/alarm-setting-label/alarm-setting-label';
 import { CouponRedeemPage } from '../pages/coupon-redeem/coupon-redeem';
+import { CouponDetailsPage } from '../pages/coupon-details/coupon-details';
+import { CouponDetailsLocationPage } from '../pages/coupon-details-location/coupon-details-location';
+
 // util pages
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -21,6 +24,10 @@ import { Autofocus } from '../components/autofocus/autofocus';
 // providers
 import { ConfigData } from '../providers/config-data';
 import { IonicStorageModule } from '@ionic/storage';
+
+// pipes
+import { timePipe } from '../components/time/time';
+import { SafeUrlPipe } from '../components/safeUrl/safeUrl';
 
 // native components
 import { StatusBar } from '@ionic-native/status-bar';
@@ -42,8 +49,12 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     AlarmSettingMusicPage,
     AlarmSettingLabelPage,
     CouponRedeemPage,
+    CouponDetailsPage,
+    CouponDetailsLocationPage,
     TabsPage,
-    Autofocus
+    Autofocus,
+    timePipe,
+    SafeUrlPipe
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -61,7 +72,10 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     AlarmSettingMusicPage,
     AlarmSettingLabelPage,
     CouponRedeemPage,
-    TabsPage
+    CouponDetailsPage,
+    CouponDetailsLocationPage,
+    TabsPage,
+    CouponDetailsPage
   ],
   providers: [
     StatusBar,

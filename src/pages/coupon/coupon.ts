@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { CouponRedeemPage } from '../coupon-redeem/coupon-redeem';
+import { Storage } from '@ionic/storage';
+
 
 /*
   Generated class for the Coupon page.
@@ -14,23 +16,57 @@ import { CouponRedeemPage } from '../coupon-redeem/coupon-redeem';
 })
 export class CouponPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
-  public couponList = [
-    {
-      'img': 'starbucks-1-for-1.png',
-      'title': 'Starbucks 1 For 1',
-      'description': 'Enjoy this exclusive Starbucks 1-4-1 coupon with your friend today! Redeem before it gets expired!',
-      'expire': new Date(),
-      'address': ''
-    }
-  ];
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public storage: Storage,
+    private alertCtrl: AlertController
+  ) { }
+  public couponList = [];
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CouponPage');
+  ionViewWillLoad() {
+    console.log('ionViewWillLoad CouponPage');
+    this.storage.ready().then(() => {
+      this.storage.get('couponList').then(couponList => {
+        this.couponList = couponList;
+        console.log(couponList);
+      })
+    })
   }
 
   redeemCoupon(coupon) {
     this.navCtrl.push(CouponRedeemPage, coupon);
+  }
+
+  deleteCoupon(coupon, index) {
+    console.log('deleteCoupon');
+
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Delete Coupon',
+      cssClass: 'myAlert',
+      message: 'Deleted coupon cannot be restored! <br> Are you sure you want to remove it?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Delete',
+          role: 'danger',
+          handler: () => {
+            console.log('Delete clicked');
+            this.storage.ready().then(() => {
+              this.couponList.splice(index, 1);
+              this.storage.set('couponList', this.couponList);
+            })
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

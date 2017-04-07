@@ -1,3 +1,120 @@
 page-alarm-ring {
+    .center-horizontal {
+        width: inherit;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .big-label {
+        font-size: 6.2rem;
+    }
+    .no-margin {
+        margin: auto
+    }
+    ion-row {
+        margin-bottom: 10px;
+    }
+    ion-range {
+        padding: 0
+    }
+    .linear-wipe {
+        text-align: center;
+        
+        background: linear-gradient(to right, #000 20%, #dedede 60%, #a0a9ce 40%, #000 80%);
+        background-size: 200% auto;
+        
+        color: #000;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+        animation: shine 1s linear infinite;
+        @keyframes shine {
+            to {
+            background-position: -200% center;
+            }
+        }
+    }
+    @-webkit-keyframes spaceboots {
+        0% {
+            -webkit-transform: translate(2px, 1px) rotate(0deg);
+        }
+        10% {
+            -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+        }
+        20% {
+            -webkit-transform: translate(-3px, 0px) rotate(1deg);
+        }
+        30% {
+            -webkit-transform: translate(0px, 2px) rotate(0deg);
+        }
+        40% {
+            -webkit-transform: translate(1px, -1px) rotate(1deg);
+        }
+        50% {
+            -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+        }
+        60% {
+            -webkit-transform: translate(-3px, 1px) rotate(0deg);
+        }
+        70% {
+            -webkit-transform: translate(2px, 1px) rotate(-1deg);
+        }
+        80% {
+            -webkit-transform: translate(-1px, -1px) rotate(1deg);
+        }
+        90% {
+            -webkit-transform: translate(2px, 2px) rotate(0deg);
+        }
+        100% {
+            -webkit-transform: translate(1px, -2px) rotate(-1deg);
+        }
+    }
 
+    .shake,
+    .shake:hover,
+    .shake:focus {
+        -webkit-animation-name: spaceboots;
+        -webkit-animation-duration: 0.8s;
+        -webkit-transform-origin: 50% 50%;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+    }
+
+    .card {
+        margin: 0.3rem;
+        width: auto;
+        border-radius: 3px;   
+    }
+
+    .card-title{
+        font-size: 2rem;
+    }
+
+    .card-wp p, .card-md p {
+        font-size: 1.3rem;
+    }
+
+    .card-ios p {
+        font-size: 1.29rem;
+    }
+
+    .blink {
+        animation: blink-animation 2s steps(50, start) infinite;
+        -webkit-animation: blink-animation 2s steps(50, start) infinite;
+    }
+    @keyframes blink-animation {
+        to {
+            color: maroon;
+            text-shadow: #dedede
+        }
+    }
+    @-webkit-keyframes blink-animation {
+        to {
+            color: maroon;
+            text-shadow: #dedede            
+        }
+    }
 }

@@ -7,12 +7,67 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>alarmRing</ion-title>
+    <ion-title>Good Morning {{ user.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <button ion-button (click)="stopAlarm()">Stop</button>
+<ion-content>
+  <ion-slides initialSlide="1">
+    <ion-slide>
+      <ion-grid padding>
+        <ion-row>
+          <ion-col col-12>
+            <h2 style="margin-top: 10px; font-weight:200; font-size:2.3rem">Choose one for your breakfast :)</h2>
+          </ion-col>
+          <template ngFor let-coupon [ngForOf]="couponList">
+            <ion-col col-6>
+              <ion-card (click)="onCouponClick(coupon)">
+                <img src="assets/img/{{coupon.img}}" />
+                <ion-card-content>
+                  <ion-card-title>
+                    {{ coupon.title }}
+                  </ion-card-title>
+                  <p>
+                    @ {{ coupon.location }}
+                  </p>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </template>
+          <ion-col col-12>
+            <p class="blink" style="font-size:1.5rem; font-weight:200">Wakey Wakey! All vouchers expires in 12hrs</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4 class="center-horizontal">
+            <button ion-button (click)="stopAlarm()" round small class="center-horizontal" outline>Snooze</button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="text-center">
+            <h1 class="big-label no-margin" *ngIf="user.timeFormat == 'HH:mm'">{{alarm.time | timeFromatter:'HH:mm'}}</h1>
+            <h1 class="big-label no-margin" *ngIf="user.timeFormat == 'hh:mm A'">{{alarm.time | timeFromatter:'hh:mm'}}</h1>
+            <h1 class="no-margin" *ngIf="user.timeFormat == 'hh:mm A'">{{alarm.time | timeFromatter:'a'}}</h1>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-8 class="center-horizontal">
+            <img class="shake" style="background-color: none" src="assets/img/039-giftbox.svg" />
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="text-center">
+            <h2 class="linear-wipe" style="margin-top: 10px; font-weight:200">Swipe and Unlock Your Gift!</h2>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+
 </ion-content>

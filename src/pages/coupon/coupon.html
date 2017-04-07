@@ -7,15 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Coupon</ion-title>
+    <ion-title>My Coupon</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list *ngFor="let coupon of couponList" no-lines>
+  <ion-list no-lines>
     <!--<ion-item>-->
+    <template ngFor let-coupon let-i="index" [ngForOf]="couponList">
+
       <ion-card>
         <img src="assets/img/{{coupon.img}}" />
 
@@ -23,27 +25,39 @@
           <ion-card-title>
             {{coupon.title}}
           </ion-card-title>
-          <p>
+          <h4>
             {{coupon.description}}
-          </p>
+          </h4>
+          <h2 style="font-size:1.2rem; font-weight:200">@ {{ coupon.location }}</h2>
+          <h2 style="font-size:1.2rem; font-weight:200">
+            <ion-icon style="font-size:inherit" name="ios-time-outline" showWhen="ios"></ion-icon>
+            <ion-icon style="font-size:inherit" name="md-time" showWhen="android, windows"></ion-icon>
+            Expires at {{coupon.expire | date:'dd/MM/yyyy HH:ss'}}
+          </h2>
         </ion-card-content>
 
         <ion-row no-padding>
           <ion-col text-left>
-            <button ion-button clear small color="danger" icon-left>
+            <button ion-button clear small color="danger" icon-left (click)="deleteCoupon(coupon, i)">
+              <ion-icon name='trash'></ion-icon>
+              Delete
+            </button>
+          </ion-col>
+          <ion-col text-center>
+            <button ion-button clear small color="primary" icon-left>
               <ion-icon name='share-alt'></ion-icon>
               Share
             </button>
           </ion-col>
           <ion-col text-right>
-            <button ion-button clear small color="danger" icon-left (click)="redeemCoupon(coupon)">
+            <button ion-button clear small color="primary" icon-left (click)="redeemCoupon(coupon)">
               <ion-icon name='barcode'></ion-icon>
               Redeem
             </button>
           </ion-col>
         </ion-row>
-
       </ion-card>
+    </template>
     <!--</ion-item>-->
   </ion-list>
 </ion-content>
