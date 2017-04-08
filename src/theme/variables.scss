@@ -23,15 +23,29 @@ $font-path: "../assets/fonts";
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+$primary-color: #142465;
+$secondary-color: #F7CE3E;
+$tertiary-color: #f4f4f4;
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
+  primary:    $primary-color,
+  secondary:  $secondary-color,
   danger:     #f53d3d,
-  light:      #f4f4f4,
+  light:      #2D3189,
+  lighter:    #fff,
   dark:       #222
 );
 
-
+$tabs-background: $primary-color;
+$toolbar-ios-background: $primary-color;
+$toolbar-md-background: $primary-color;
+$toolbar-wp-background: $primary-color;
+$tabs-ios-tab-color-inactive: $tertiary-color;
+$tabs-ios-tab-color-active: $secondary-color;
+$tabs-md-tab-color-inactive: $tertiary-color;
+$tabs-md-tab-color-active: $secondary-color;
+$tabs-wp-tab-color-inactive: $tertiary-color;
+$tabs-wp-tab-color-active: $secondary-color;
+$toggle-md-handle-background-color-on: $tertiary-color;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

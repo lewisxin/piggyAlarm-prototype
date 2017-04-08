@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding scroll="false">
   <ion-grid>
     <ion-row>
       <ion-col col-12 class="text-center">
@@ -23,8 +23,8 @@
     <ion-row>
       <template ngFor let-avatar [ngForOf]="avatarList">
         <ion-col col-4>
-          <ion-card style="padding:0.4rem">
-            <img src="assets/img/avatars/{{avatar.img}}" (click)="selectAvatar(avatar)" />
+          <ion-card style="padding:0.4rem" (click)="selectAvatar(avatar)">
+            <img src="assets/img/avatars/{{avatar.img}}" />
           </ion-card>
           <ion-label style="font-weight:200" text-center>{{avatar.name}}</ion-label>
         </ion-col>

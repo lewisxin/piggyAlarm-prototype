@@ -8,6 +8,7 @@ import { SettingsPage } from '../settings/settings';
 import { ModalController, ViewController, NavController, Tabs, NavParams } from "ionic-angular";
 
 @Component({
+  selector: 'page-settings-tabs',
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
