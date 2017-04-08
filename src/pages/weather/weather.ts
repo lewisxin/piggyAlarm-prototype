@@ -23,7 +23,8 @@ export class WeatherPage {
   bottom: String;
   forecast = [];
   weather: any = {
-    main: {}
+    main: {},
+    dt: new Date()
   }
 
   constructor(
@@ -46,12 +47,13 @@ export class WeatherPage {
       .then((resp) => {
         // console.log(resp);
         let firstData;
-        this.weatherService.getCurrent(resp.coords).subscribe((data) => {
+        let sub = this.weatherService.getCurrent(resp.coords).subscribe((data) => {
           firstData = data;
-        })
+        });
         this.weatherService.get24HrForecast(resp.coords).subscribe((data) => {
           // data loaded, dismiss loading
           loading.dismiss();
+          sub.unsubscribe();
           this.forecast = data.list.map(e => {
             e.city = data.city;
             return e;
@@ -62,7 +64,7 @@ export class WeatherPage {
           }
           this.weather = this.forecast[0];
           // console.log(this.forecast);
-        });
+        })
       })
       .catch((error) => {
         console.log('Error getting location', error);
