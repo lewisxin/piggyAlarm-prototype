@@ -35,3 +35,11 @@
     font-size:1.5rem; 
     font-weight:200
 }
+
+.avatar {
+    float: left;
+    margin: 3rem 1rem 1rem 1rem;
+    position: relative;
+    border-radius: 40%;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+}

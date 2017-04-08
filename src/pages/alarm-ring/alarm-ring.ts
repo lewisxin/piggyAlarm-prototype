@@ -13,10 +13,10 @@ import { CouponDetailsPage } from '../coupon-details/coupon-details';
   templateUrl: 'alarm-ring.html'
 })
 export class AlarmRingPage {
-  user: any = {
+  user = {
     name: 'Lewis',
     timeFormat: 'hh:mm A',
-    gender: 'm'
+    gender: 'male'
   };
   alarm: any;
   sliderPosition: number;

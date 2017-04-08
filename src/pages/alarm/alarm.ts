@@ -18,11 +18,10 @@ import { Vibration } from "@ionic-native/vibration";
 })
 export class AlarmPage {
   alarmList = [];
-  timeFormat = 'HH:mm'; // timeFormat = 'hh:mm'
   user: any = {
     name: 'Lewis',
     timeFormat: 'hh:mm A',
-    gender: 'm'
+    gender: 'male'
   };
 
   constructor(
@@ -32,26 +31,20 @@ export class AlarmPage {
     private modalCtrl: ModalController,
     private media: MediaPlugin,
     private vibration: Vibration,
-  ) {
-    this.storage.ready().then(() => {
-      this.storage.get('user').then((user) => {
-        if (user) {
-          this.user = user;
-        }
-      });
-    });
-  }
+  ) { }
 
   ionViewWillEnter() {
     // console.log(moment("2013-12-21"));
     console.log('ionViewWillEnter AlarmPage');
 
     this.storage.ready().then(() => {
+      this.storage.get('user').then((user) => {
+        if (user) {
+          this.user = user;
+        }
+      });
       this.storage.get('alarmList').then((val) => {
         this.alarmList = val;
-      })
-      this.storage.get('timeFormat').then((val) => {
-        this.timeFormat = val ? val : 'HH:mm';
       })
     })
   }

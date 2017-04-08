@@ -14,6 +14,9 @@ import { AlarmSettingLabelPage } from '../pages/alarm-setting-label/alarm-settin
 import { CouponRedeemPage } from '../pages/coupon-redeem/coupon-redeem';
 import { CouponDetailsPage } from '../pages/coupon-details/coupon-details';
 import { CouponDetailsLocationPage } from '../pages/coupon-details-location/coupon-details-location';
+import { SettingsNamePage } from '../pages/settings-name/settings-name';
+import { SettingsAvatarPage } from '../pages/settings-avatar/settings-avatar';
+import { SettingsGenderPage } from '../pages/settings-gender/settings-gender';
 
 // util pages
 import { TabsPage } from '../pages/tabs/tabs';
@@ -57,6 +60,9 @@ import { Geolocation } from '@ionic-native/geolocation';
     CouponRedeemPage,
     CouponDetailsPage,
     CouponDetailsLocationPage,
+    SettingsNamePage,
+    SettingsAvatarPage,
+    SettingsGenderPage,
     TabsPage,
     Autofocus,
     timePipe,
@@ -83,6 +89,9 @@ import { Geolocation } from '@ionic-native/geolocation';
     CouponRedeemPage,
     CouponDetailsPage,
     CouponDetailsLocationPage,
+    SettingsNamePage,
+    SettingsAvatarPage,
+    SettingsGenderPage,
     TabsPage,
     CouponDetailsPage
   ],

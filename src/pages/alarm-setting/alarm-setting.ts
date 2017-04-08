@@ -18,7 +18,9 @@ import { Storage } from '@ionic/storage';
 export class AlarmSettingPage {
   alarm: any;
   createNew = true;
-  timeFormat = 'hh:mm A' // 'HH:mm'
+  user = {
+    timeFormat: 'HH:mm'
+  }
   alarmList: any;
 
   constructor(public navCtrl: NavController,
@@ -30,6 +32,18 @@ export class AlarmSettingPage {
     // private localNotifications: LocalNotifications
   ) { }
 
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter AlarmSettingPage');
+    this.storage.ready().then(() => {
+      this.storage.get('user').then(user => {
+        this.user = user;
+      });
+      this.storage.get('alarmList').then((alarmList) => {
+        this.alarmList = alarmList;
+      });
+    });
+  }
+
   ionViewWillLoad() {
     console.log('ionViewWillLoad AlarmSettingPage');
     if (this.navParams.data && this.navParams.data.createNewAlarm == false) {
@@ -38,15 +52,7 @@ export class AlarmSettingPage {
     if (this.navParams.data && this.navParams.data.alarm) {
       this.alarm = this.navParams.data.alarm;
     }
-  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AlarmSettingPage');
-    this.storage.ready().then(() => {
-      this.storage.get('alarmList').then((alarmList) => {
-        this.alarmList = alarmList;
-      })
-    });
   }
 
   // cancel alarm settings

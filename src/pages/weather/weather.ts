@@ -17,7 +17,7 @@ export class WeatherPage {
   user = {
     gender: 'male',
     name: '',
-    timeFormat: 'hh:ss A'
+    timeFormat: 'hh:mm A'
   }
   top: String;
   bottom: String;

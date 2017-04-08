@@ -17,7 +17,7 @@ export class CouponRedeemPage {
   user: any = {
     name: 'Lewis',
     timeFormat: 'hh:mm A',
-    gender: 'm'
+    gender: 'male'
   };
 
   constructor(

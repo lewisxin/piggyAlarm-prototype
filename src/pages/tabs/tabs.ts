@@ -42,7 +42,7 @@ export class TabsPage {
         'label': 'Alarm',
         'music': 'Piggy Song',
         'on': true,
-        'time': '08:00',
+        'time': '08:00:00',
         'volume': '80'
       }
     });
