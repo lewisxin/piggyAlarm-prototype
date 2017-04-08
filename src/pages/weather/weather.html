@@ -14,5 +14,56 @@
 
 
 <ion-content padding>
+  <ion-grid *ngIf="weather.main.temp">
+    <ion-row>
+      <ion-col col-12>
+        <h1 id="dgree" class="text-center weather-icon">
+          <i [class]="weather.weather[0].id | weatherIcon"></i>
+        </h1>
+      </ion-col>
+      <ion-col col-12>
+        <h1 id="dgree" class="text-center label label-large">{{weather.main.temp | temperature}}&deg;</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 text-left>
+        <h6 id="city" class="label label-medium" style="text-transform: capitalize;">{{weather.weather[0].description}}</h6>
+        <h6 id="humidity" class="label label-small"><i class="wi wi-humidity icon"></i> {{weather.main.humidity}} %</h6>
+        <h6 id="wind" class="label label-small"><i class="wi wi-strong-wind icon"></i> {{weather.wind.deg | windDegree}} {{weather.wind.speed}} m/s</h6>
+      </ion-col>
+      <ion-col col-6 text-right>
+        <h6 id="city" class="label label-medium">{{weather.city.name}}, {{weather.city.country}}</h6>
+        <h6 id="date" class="label label-small">{{weather.dt*1000 | date:'EEE, d MMM HH:ss'}}</h6>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-range min="1" [max]="forecast.length" snaps="true" style="padding:0" (ionChange)="timeChange($event)" [(ngModel)]="time">
+          <ion-label range-left>Now</ion-label>
+          <ion-label range-right>Later</ion-label>
+        </ion-range>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 class="center-horizontal" style="padding:0">
+        <ion-segment [(ngModel)]="user.gender" color="danger" (ionChange)="updateClothesUrl()">
+          <ion-segment-button value="male">
+            <ion-icon name="man"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="female">
+            <ion-icon name="woman"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-row style="padding-top:1rem">
+      <ion-col col-6 text-right>
+        <img src="assets/img/clothes/{{top}}" class="clothes-top" />
+      </ion-col>
+      <ion-col col-6 text-left>
+        <img src="assets/img/clothes/{{bottom}}" class="clothes-bottom" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

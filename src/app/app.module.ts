@@ -23,11 +23,15 @@ import { Autofocus } from '../components/autofocus/autofocus';
 
 // providers
 import { ConfigData } from '../providers/config-data';
+import { WeatherData } from '../providers/weather-data';
 import { IonicStorageModule } from '@ionic/storage';
 
 // pipes
 import { timePipe } from '../components/time/time';
 import { SafeUrlPipe } from '../components/safeUrl/safeUrl';
+import { weatherIconPipe } from '../components/weather/icon';
+import { temperaturePipe } from '../components/weather/temperature';
+import { windDegreePipe } from '../components/weather/wind-degree';
 
 // native components
 import { StatusBar } from '@ionic-native/status-bar';
@@ -36,6 +40,8 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { MediaPlugin } from '@ionic-native/media';
 import { Vibration } from '@ionic-native/vibration';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Geolocation } from '@ionic-native/geolocation';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +60,10 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     TabsPage,
     Autofocus,
     timePipe,
-    SafeUrlPipe
+    SafeUrlPipe,
+    weatherIconPipe,
+    temperaturePipe,
+    windDegreePipe
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -84,8 +93,10 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     MediaPlugin,
     Vibration,
     LocalNotifications,
+    Geolocation,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    ConfigData
+    ConfigData,
+    WeatherData
   ]
 })
 export class AppModule { }

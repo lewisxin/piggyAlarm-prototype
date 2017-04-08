@@ -1,3 +1,47 @@
 page-weather {
+    .weather-icon, .label {
+        -webkit-transition: ease-in-out; /* Safari */
+        transition: ease-in-out;
+    }
+    
+    .icon {
+        min-width: 25px;
+    }
+    .weather-icon {
+        margin-bottom: 0;
+        max-height: 7rem;
+        font-size: 8rem;
+        margin-top: 1rem;
+    }
+    .label{
+        font-weight: 300;
+        margin-top: 0;
+    }
+    .label-large {
+        font-size: 8rem;
+        margin-bottom: 0;
+        font-weight:300;
+    }
+    .label-medium {
+        font-size: 1.8rem;
+    }
+    .label-small {
+        font-size: 1.4rem;
+    }
 
+    .gender-btn{
+        font-size: 5rem;
+    }
+
+    .clothes-top{
+        width: 65%;
+    }
+    .clothes-bottom {
+        width: 62%;
+    }
+
+    .segment-ios{
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
 }
