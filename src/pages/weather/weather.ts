@@ -22,10 +22,7 @@ export class WeatherPage {
   top: String;
   bottom: String;
   forecast = [];
-  weather: any = {
-    main: {},
-    dt: new Date()
-  }
+  weather: any = {}
 
   constructor(
     public navCtrl: NavController,
@@ -52,17 +49,18 @@ export class WeatherPage {
         });
         this.weatherService.get24HrForecast(resp.coords).subscribe((data) => {
           // data loaded, dismiss loading
-          loading.dismiss();
           sub.unsubscribe();
           this.forecast = data.list.map(e => {
             e.city = data.city;
             return e;
           })
-          if (new Date(firstData.dt * 1000).getHours() < new Date(this.forecast[0].dt * 1000).getHours()) {
+          console.log('this.forecast[0]',this.forecast[0]);
+          if (firstData && this.forecast[0] && new Date(firstData.dt * 1000).getHours() < new Date(this.forecast[0].dt * 1000).getHours()) {
             firstData.city = data.city;
             this.forecast.splice(0, 0, firstData);
           }
           this.weather = this.forecast[0];
+          loading.dismiss();          
           // console.log(this.forecast);
         })
       })
