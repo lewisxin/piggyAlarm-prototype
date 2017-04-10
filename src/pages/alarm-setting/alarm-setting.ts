@@ -19,7 +19,7 @@ export class AlarmSettingPage {
   alarm: any;
   createNew = true;
   user = {
-    timeFormat: 'HH:mm'
+    timeFormat: 'hh:mm A'
   }
   alarmList: any;
 
@@ -36,7 +36,9 @@ export class AlarmSettingPage {
     console.log('ionViewWillEnter AlarmSettingPage');
     this.storage.ready().then(() => {
       this.storage.get('user').then(user => {
-        this.user = user;
+        if (user) {
+          this.user = user;
+        }
       });
       this.storage.get('alarmList').then((alarmList) => {
         this.alarmList = alarmList;
